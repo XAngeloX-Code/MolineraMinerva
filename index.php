@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,14 +55,14 @@
 </body>
 
 </html>
-=======
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    ANGELO GEI
+
 </body>
 </html>
->>>>>>> 200a3ae6964e67cece8121c6c3625df184c4f1cf
+
