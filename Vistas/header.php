@@ -9,31 +9,30 @@
     <link rel="stylesheet" type="text/css" href="../Librerias/datatable/dataTables.bootstrap5.css">
     <title>Molinera</title>
 </head>
+
 <body>
     <!--navbar-->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><span class="fa-solid fa-house"></span>Inicio</a>
+            <a class="navbar-brand" href="inicio.php"><span class="fa-solid fa-house"></span>Inicio</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="administrar.php"><span class="fa-solid fa-folder"></span>Administrar</a>
+                        <a class="nav-link" href="categorias.php"><i class="fas fa-chart-bar"></i> Categorias</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="administrar.php"><span class="fa-solid fa-folder"></span>Reportes</a>
+                        <a class="nav-link" href="administrar.php"><i class="fas fa-folder"></i> Administrar</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown link
+                    <li class="nav-item">
+                        <a class="nav-link" href="reportes.php"><i class="fas fa-chart-bar"></i> Reportes</a>
+                    </li>
+                    <li class="nav-item" style="color: red">
+                        <a class="nav-link" href="../Procesos/usuario/salir.php" style="color: red;">
+                            <span class="fas fa-power-off"></span> Salir
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
                     </li>
                 </ul>
             </div>

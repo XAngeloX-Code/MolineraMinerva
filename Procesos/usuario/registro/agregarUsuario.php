@@ -5,7 +5,7 @@ require_once "../../../Clases/usuario.php";
 // Verificar si se reciben los datos necesarios del formulario
 if (isset($_POST['nombre'], $_POST['fechaNacimiento'], $_POST['correo'], $_POST['usuario'], $_POST['password'])) {
     // Cifrar la contraseña de manera segura
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = sha1($_POST['password']);
 
     // Datos del usuario a insertar en la base de datos
     $datos = array(

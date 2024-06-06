@@ -36,6 +36,58 @@ class Usuario extends Conectar
             return 0;
         }
     }
+
+
+    public function login($usuario, $password)
+{
+    // Establecer la conexión con la base de datos
+    try {
+        $conexion = Conectar::conexion();
+    } catch (PDOException $e) {
+        // Manejar errores de conexión
+        error_log("Error de conexión a la base de datos: " . $e->getMessage());
+        return -1; // Devolver un código de error especial
+    }
+
+    // Preparar la consulta SQL para verificar si el usuario y la contraseña son correctos
+    $sql = "SELECT count(*) as existeUsuario FROM usuarios WHERE usuario = ? AND password = ?";
+    try {
+        $stmt = $conexion->prepare($sql);
+        $stmt->bindParam(1, $usuario);
+        $stmt->bindParam(2, $password);
+        $stmt->execute();
+        $respuesta = $stmt->fetch(PDO::FETCH_ASSOC)['existeUsuario'];
+    } catch (PDOException $e) {
+        // Manejar errores de consulta
+        error_log("Error al ejecutar la consulta SQL: " . $e->getMessage());
+        return -1; // Devolver un código de error especial
+    }
+
+    if ($respuesta > 0) {
+        // Si el usuario existe, iniciar sesión
+        $_SESSION['usuario'] = $usuario;
+        
+        // Preparar la consulta SQL para obtener el ID del usuario
+        $sql = "SELECT id_usuario FROM usuarios WHERE usuario = ? AND password = ?";
+        try {
+            $stmt = $conexion->prepare($sql);
+            $stmt->bindParam(1, $usuario);
+            $stmt->bindParam(2, $password);
+            $stmt->execute();
+            $idUsuario = $stmt->fetch(PDO::FETCH_ASSOC)['id_usuario'];
+            $_SESSION['id_usuario'] = $idUsuario;
+        } catch (PDOException $e) {
+            // Manejar errores de consulta
+            error_log("Error al ejecutar la consulta SQL: " . $e->getMessage());
+            return -1; // Devolver un código de error especial
+        }
+        
+        return 1; // Inicio de sesión exitoso
+    } else {
+        return 0; // Usuario o contraseña incorrectos
+    }
+}
+
 }
 
 ?>

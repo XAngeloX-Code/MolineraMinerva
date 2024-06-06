@@ -23,11 +23,11 @@
                                 <p class="text-muted">Inicia session con tu cuenta</p>
                                 <div class="input-group mb-3">
                                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                    <input type="text" class="form-control" placeholder="Usuario" required="">
+                                    <input type="text" id="login" class="form-control" name="login" placeholder="Usuario" required="">
                                 </div>
                                 <div class="input-group mb-4">
                                     <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-                                    <input type="password" class="form-control" placeholder="Contraseña" required="">
+                                    <input type="password" id="password" class="form-control" name="password" placeholder="Contraseña" required="">
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
@@ -56,22 +56,27 @@
 
     <script src="Librerias/jquery-3.7.1.js"></script>
     <script type="text/javascript">
-        function logear(){
-            $.ajax({
-                method: "POST",
-                data: $('#frmLogin').serialize(),
-                url: "Procesos/usuario/login/login.php",
-                success: function(respuesta) {
-                    respuesta = JSON.parse(respuesta.trim());
-                    if (respuesta.success == 1) {
-                        window.location = "Vistas/inicio.php";
-                    } else {
-                        alert("Error al iniciar sesión.");
-                    }
+    function logear(){
+        $.ajax({
+            method: "POST",
+            data: $('#frmLogin').serialize(),
+            url: "Procesos/usuario/login/login.php",
+            success: function(respuesta) {
+                respuesta = respuesta.trim();
+                if (respuesta === "1") {
+                    window.location = "Vistas/inicio.php";
+                } else {
+                    alert("Error al iniciar sesión.");
                 }
-            });
-        }
-    </script>
+            },
+            error: function() {
+                alert("Error de conexión. Intente nuevamente.");
+            }
+        });
+        return false;
+    }
+</script>
+
 </body>
 
 </html>
