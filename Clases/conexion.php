@@ -2,32 +2,30 @@
 
 class Conectar
 {
+    private const SERVIDOR = 'localhost';
+    private const NOMBRE_BD = 'molinera_gestionarchivos';
+    private const USUARIO = 'root';
+    private const PASSWORD = '';
 
     public static function conexion()
-{
-    if (!defined('servidor')) {
-        define('servidor', 'localhost');
-    }
-    if (!defined('nombre_bd')) {
-        define('nombre_bd', 'molinera_gestionarchivos');
-    }
-    if (!defined('usuario')) {
-        define('usuario', 'root');
-    }
-    if (!defined('password')) {
-        define('password', '');
-    }
-
-        $conexion = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+    {
+        $opciones = array(
+            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES => false,
+        );
 
         try {
-            $conexion = new PDO("mysql:host=".servidor.";dbname=".nombre_bd, usuario, password, $conexion);
-            $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $conexion->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
+            $conexion = new PDO(
+                "mysql:host=" . self::SERVIDOR . ";dbname=" . self::NOMBRE_BD,
+                self::USUARIO,
+                self::PASSWORD,
+                $opciones
+            );
             return $conexion;
-        } catch (Exception $e) {
-            die("El error de conexión es: " . $e->getMessage());
+        } catch (PDOException $e) {
+            error_log("Error de conexión: " . $e->getMessage());
+            return null; // Retornar null en lugar de terminar el script con die()
         }
     }
 }

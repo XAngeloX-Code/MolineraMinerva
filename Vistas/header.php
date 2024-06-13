@@ -27,7 +27,7 @@
                         <a class="nav-link" href="administrar.php"><i class="fas fa-folder"></i> Administrar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="reportes.php"><i class="fas fa-chart-bar"></i> Reportes</a>
+                        <a class="nav-link" href="reportes.php"><i class="fas fa-  "></i> Reportes</a>
                     </li>
                     <li class="nav-item" style="color: red">
                         <a class="nav-link" href="../Procesos/usuario/salir.php" style="color: red;">

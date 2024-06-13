@@ -12,6 +12,7 @@ function agregarArchivos() {
             console.log(respuesta);
             respuesta = respuesta.trim();
             if (respuesta == 1) {
+                $('#frmArchivos')[0].reset();
                 $('#tablaGestorArchivos').load("gestor/tablagestor.php");
                 alert("Archivo agregado con éxito");
             } else {
@@ -19,4 +20,41 @@ function agregarArchivos() {
             }
         }
     });
+}
+
+function eliminarArchivo(idArchivo) {
+    idArchivo = parseInt(idArchivo);
+    if(idArchivo < 1) {
+        alert("No tienes id de archivo!");
+        return false;   
+    }else{
+        var confirmacion = confirm("¿Estás seguro de eliminar este archivo? Una vez eliminado, no podrá recuperarse.");
+    if(confirmacion){
+        $.ajax({
+            type: "POST",
+            data: { idArchivo: idArchivo },
+            url: "../Procesos/administrar/eliminarArchivo.php",
+            success: function(respuesta){
+                respuesta = respuesta.trim();
+                if(respuesta == 1){
+                    $('#tablaGestorArchivos').load("gestor/tablagestor.php");
+                    alert("Archivo eliminado con éxito!");
+                }else{
+                    alert("Fallo al eliminar el archivo :");
+                }
+            }
+        })
+     }
+    }
+}
+
+function obtenerArchivoPorId(idArchivo){
+    $.ajax({
+        type: "POST",
+        data: "idArchivo=" + idArchivo,
+        url: "../Procesos/administrar/obtenerArchivo.php",
+        success: function(respuesta){
+            $('#archivoObtenido').html(respuesta);
+        }
+    })
 }

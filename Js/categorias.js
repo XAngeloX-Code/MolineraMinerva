@@ -14,8 +14,9 @@ function agregarCategoria() {
                     $('#nombreCategoria').val("");
                     alert("Categoria agregada con éxito");
                 } else {
-                    alert("Fallo al agregar la categoria");
+                    alert("Fallo al agregar la fecha");
                 }
+                
             }
         });
     }
